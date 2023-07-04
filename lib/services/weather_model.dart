@@ -15,6 +15,9 @@ class Weather {
   final String dateCondition1;
   final String date2;
   final String dateCondition2;
+  final String icon;
+  final String icon1;
+  final String icon2;
 
   Weather({
     this.aqi = 0,
@@ -33,6 +36,10 @@ class Weather {
     this.dateCondition1 = '',
     this.date2 = '',
     this.dateCondition2 = '',
+    this.icon = '',
+    this.icon1 = '',
+    this.icon2 = '',
+
   });
 
   factory Weather.fromJson(Map<String, dynamic> json) {
@@ -58,6 +65,10 @@ class Weather {
 
       date2: json['forecast']['forecastday'][2]['date'],
       dateCondition2: json['forecast']['forecastday'][2]['day']['condition']['text'],
+
+      icon: json['forecast']['forecastday'][0]['day']['condition']['icon'],
+      icon1: json['forecast']['forecastday'][1]['day']['condition']['icon'],
+      icon2: json['forecast']['forecastday'][2]['day']['condition']['icon'],
     );
   }
 }

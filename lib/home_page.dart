@@ -39,6 +39,10 @@ class _HomePageState extends State<HomePage> {
   String date2 = '';
   String dateCondition2 = '';
 
+  String icon = '';
+  String icon1 = '';
+  String icon2 = '';
+
   @override
   void initState() {
     super.initState();
@@ -70,6 +74,10 @@ class _HomePageState extends State<HomePage> {
 
       date2 = weather.date2;
       dateCondition2 = weather.dateCondition2;
+
+      icon = weather.icon;
+      icon1 = weather.icon1;
+      icon2 = weather.icon2;
     });
     if (kDebugMode) {
       print(weather.temperatureC);
