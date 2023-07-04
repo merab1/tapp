@@ -17,9 +17,9 @@ class _HomePageState extends State<HomePage> {
   Weather weather = Weather();
   WeatherService weatherService = WeatherService();
 
-  String currentWeather = "";
+  String currentWeather = "Sunny";
   double tempC = 0;
-  double tempF = 0;
+  double aqi = 0;
 
   @override
   void initState() {
@@ -28,11 +28,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   void getWeather() async {
-    weather = await weatherService.getWeatherData("Canada");
+    weather = await weatherService.getWeatherData("London");
 
     setState(() {
       currentWeather = weather.condition;
       tempC = weather.temperatureC;
+      aqi = weather.aqi;
     });
     if (kDebugMode) {
       print(weather.temperatureC);
@@ -96,19 +97,19 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {},
               style:
                   ElevatedButton.styleFrom(backgroundColor: Colors.yellow[600]),
-              child: const Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.ac_unit,
                     color: Colors.white,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Text(
-                    'AQI 14',
-                    style: TextStyle(
+                    aqi.round().floor().toString(),
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
