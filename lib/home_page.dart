@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   String currentWeather = "Sunny";
   double tempC = 0;
   double aqi = 0;
+  String location = '';
 
   @override
   void initState() {
@@ -34,6 +35,7 @@ class _HomePageState extends State<HomePage> {
       currentWeather = weather.condition;
       tempC = weather.temperatureC;
       aqi = weather.aqi;
+      location = weather.location;
     });
     if (kDebugMode) {
       print(weather.temperatureC);
@@ -55,9 +57,9 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {},
               icon: const Icon(Icons.location_on),
             ),
-            const Text(
-              'London',
-              style: TextStyle(
+             Text(
+              location,
+              style: const TextStyle(
                   color: Colors.white,
                   fontSize: 36,
                   fontWeight: FontWeight.bold),
