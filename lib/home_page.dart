@@ -21,6 +21,14 @@ class _HomePageState extends State<HomePage> {
   double tempC = 0;
   double aqi = 0;
   String location = '';
+  double minTemp = 0;
+  double maxTemp = 0;
+
+  double minTemp1 = 0;
+  double maxTemp1 = 0;
+
+  double minTemp2 = 0;
+  double maxTemp2 = 0;
 
   @override
   void initState() {
@@ -36,6 +44,14 @@ class _HomePageState extends State<HomePage> {
       tempC = weather.temperatureC;
       aqi = weather.aqi;
       location = weather.location;
+      minTemp = weather.minTemp;
+      maxTemp = weather.maxTemp;
+
+      minTemp1 = weather.minTemp1;
+      maxTemp1 = weather.maxTemp1;
+
+      minTemp2 = weather.minTemp2;
+      maxTemp2 = weather.maxTemp2;
     });
     if (kDebugMode) {
       print(weather.temperatureC);
@@ -131,17 +147,17 @@ class _HomePageState extends State<HomePage> {
             weatherRow(
               Icons.sunny_snowing,
               'Today - Thunderstorm',
-              '29/25',
+              '${minTemp.round().floor()}/${maxTemp.round().floor()}',
             ),
             weatherRow(
               Icons.cloud,
               'Fri - Cloudy',
-              '30/25',
+              '${minTemp1.round().floor()}/${maxTemp1.round().floor()}',
             ),
             weatherRow(
               Icons.sunny_snowing,
               'Today - Thunderstorm',
-              '25/20',
+              '${minTemp2.round().floor()}/${maxTemp2.round().floor()}',
             ),
             const SizedBox(height: 40,),
         ElevatedButton(
