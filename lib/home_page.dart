@@ -30,6 +30,15 @@ class _HomePageState extends State<HomePage> {
   double minTemp2 = 0;
   double maxTemp2 = 0;
 
+  String date = '';
+  String dateCondition = '';
+
+  String date1 = '';
+  String dateCondition1 = '';
+
+  String date2 = '';
+  String dateCondition2 = '';
+
   @override
   void initState() {
     super.initState();
@@ -52,6 +61,15 @@ class _HomePageState extends State<HomePage> {
 
       minTemp2 = weather.minTemp2;
       maxTemp2 = weather.maxTemp2;
+
+      date = weather.date;
+      dateCondition = weather.dateCondition;
+
+      date1 = weather.date1;
+      dateCondition1 = weather.dateCondition1;
+
+      date2 = weather.date2;
+      dateCondition2 = weather.dateCondition2;
     });
     if (kDebugMode) {
       print(weather.temperatureC);
@@ -146,17 +164,17 @@ class _HomePageState extends State<HomePage> {
             ),
             weatherRow(
               Icons.sunny_snowing,
-              'Today - Thunderstorm',
+              '$date - $dateCondition',
               '${minTemp.round().floor()}/${maxTemp.round().floor()}',
             ),
             weatherRow(
               Icons.cloud,
-              'Fri - Cloudy',
+                '$date1 - $dateCondition1',
               '${minTemp1.round().floor()}/${maxTemp1.round().floor()}',
             ),
             weatherRow(
               Icons.sunny_snowing,
-              'Today - Thunderstorm',
+              '$date2 - $dateCondition2',
               '${minTemp2.round().floor()}/${maxTemp2.round().floor()}',
             ),
             const SizedBox(height: 40,),
