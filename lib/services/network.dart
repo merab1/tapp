@@ -8,17 +8,9 @@ import 'package:tapp/services/weather_model.dart';
 class WeatherService {
   Future<Weather> getWeatherData(String place) async {
     try {
-      final queryParameters = {
-        'key': weatherApiKey,
-        'q': place,
-      };
       final url =
-          'http://api.weatherapi.com/v1/current.json?key=$weatherApiKey&q=$place&aqi=yes';
-      final uri =
-          Uri.http('api.weatherapi.com', '/v1/current.json', queryParameters);
-      if (kDebugMode) {
-        print(uri);
-      }
+          'http://api.weatherapi.com/v1/forecast.json?key=$weatherApiKey&q=$place&days=3&aqi=yes&alerts=no';
+
       final response = await http.get(
         Uri.parse(url),
       );
