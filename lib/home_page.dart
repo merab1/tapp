@@ -1,9 +1,44 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:tapp/services/network.dart';
+import 'package:tapp/services/weather_model.dart';
 import 'package:tapp/widgets/weather_row.dart';
 import 'package:tapp/widgets/weather_text_widget.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  Weather weather = Weather();
+  WeatherService weatherService = WeatherService();
+
+  String currentWeather = "";
+  double tempC = 0;
+  double tempF = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    getWeather();
+  }
+
+  void getWeather() async {
+    weather = await weatherService.getWeatherData("Canada");
+
+    setState(() {
+      currentWeather = weather.condition;
+      tempC = weather.temperatureC;
+    });
+    if (kDebugMode) {
+      print(weather.temperatureC);
+      print(weather.condition);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,17 +75,17 @@ class HomePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30,),
-            const Text(
-              '27',
-              style: TextStyle(
+             Text(
+              '${tempC.round().floor()}',
+              style: const TextStyle(
                 fontSize: 96,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
-            const Text(
-              'Cloudy',
-              style: TextStyle(
+             Text(
+              currentWeather,
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 36,
                 color: Colors.white,
