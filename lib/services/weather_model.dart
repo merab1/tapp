@@ -1,11 +1,9 @@
 class Weather {
   final double temperatureC;
-  final double temperatureF;
   final String condition;
 
   Weather({
     this.temperatureC = 0,
-    this.temperatureF = 0,
     this.condition = "test",
   });
 
